@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/model/meal.dart';
 import 'package:meals_app/screens/categories.dart';
+import 'package:meals_app/screens/filters.dart';
 import 'package:meals_app/screens/meals.dart';
+import 'package:meals_app/widgets/main_drawer.dart';
 
 class TabsScreen extends StatefulWidget {
   const TabsScreen({super.key});
@@ -43,6 +45,17 @@ class _TabsScreenState extends State<TabsScreen> {
     });
   }
 
+  void onSelectScreen(String selectedScreen)  {
+    Navigator.of(context).pop();
+    if (selectedScreen == "filters") {
+     Navigator.of(context).push<Map<String, bool>>(
+        MaterialPageRoute(
+          builder: (context) => const FiltersScreen(),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget activePage =
@@ -59,6 +72,7 @@ class _TabsScreenState extends State<TabsScreen> {
         title: Text(selectedIndex == 0 ? "Categories" : "Favourites"),
       ),
       body: activePage,
+      drawer: MainDrawer(onSelectScreen: onSelectScreen),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selectedIndex,
         items: const [
