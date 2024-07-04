@@ -5,7 +5,7 @@ import 'package:meals_app/widgets/meal_item_trait.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class MealItem extends StatelessWidget {
-  const MealItem({super.key, required this.meal, required this.onToggleFavourite});
+  const MealItem({super.key, required this.meal});
   
 
   String get affordabilityStr {
@@ -19,7 +19,7 @@ class MealItem extends StatelessWidget {
   }
 
   final Meal meal;
-  final void Function(Meal meal) onToggleFavourite;
+  
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -32,7 +32,7 @@ class MealItem extends StatelessWidget {
         onTap: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => MealDetailsScreen(meal, onToggleFavourite: onToggleFavourite),
+              builder: (context) => MealDetailsScreen(meal),
             ),
           );
         },
